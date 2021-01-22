@@ -1,21 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
-    <title>Document</title>
-</head>
-<body class="bg-background h-full">
-    <div class="flex flex-col justify-center items-center w-screen" style="height: 75vh"><!-- CONTENT WRAPPER -->
-        <div class="w-7/12">
-            <p class="text-3xl font-mono text-primary leading-loose tracking-wide p-4" id="quote"></p>
-        </div>
-        <div class="w-2/6 mt-10 flex">
-            <input class="focus:ring-2 focus:ring-blue-600 px-3 py-3 w-4/6 text-xl" id="word-input">
-            <button class="text-primary w-1/6 bg-secondary ml-3 flex items-center justify-center" id="restart"><svg class="w-5 h-5 inline-block mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg><span>Restart</span></button>
-        </div>
-    </div>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="style.css" />
+		<script src="script.js" defer></script>
+		<title>Document</title>
+	</head>
+	<body class="bg-background h-full">
+		<div
+			class="flex flex-col justify-center items-center w-screen"
+			style="height: 75vh"
+		>
+			<!-- CONTENT WRAPPER -->
+			<div class="w-7/12">
+				<p
+					class="text-3xl font-mono text-primary leading-loose tracking-wide p-4"
+					id="quote"
+				></p>
+			</div>
+			<div class="w-2/6 mt-10 flex">
+				<input
+					class="focus:ring-2 focus:ring-blue-600 px-3 py-3 w-4/6 text-xl"
+					id="word-input"
+				/>
+				<button
+					class="text-primary w-1/6 bg-secondary ml-3 flex items-center justify-center"
+					id="restart"
+				>
+					<svg
+						class="w-5 h-5 inline-block mr-1"
+						fill="none"
+						stroke="currentColor"
+						viewBox="0 0 24 24"
+						xmlns="http://www.w3.org/2000/svg"
+					>
+						<path
+							stroke-linecap="round"
+							stroke-linejoin="round"
+							stroke-width="2"
+							d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+						></path></svg
+					><span>Refresh</span>
+				</button>
+			</div>
+		</div>
+	</body>
 </html>

@@ -3,6 +3,12 @@ const restartBtn = document.getElementById("restart");
 const wordInput = document.getElementById("word-input");
 
 let wordList, wordElements;
+let allWordsStr = "";
+let allLettersTyped = "";
+
+const sources = new Map();
+sources.set("quotable", "http://api.quotable.io/random?minLength=100&maxLength=120");
+sources.set("randomEnglish", "texts/json");
 
 async function getQuote() {
 	let response = await fetch(
@@ -12,11 +18,35 @@ async function getQuote() {
 	return data;
 }
 
+// hello world
+
+// test function
+async function getEnglishWords() {
+    let response = await fetch("texts/english.json");
+    let data = await response.json();
+    return data;
+}
+
+renderEnglish();
+function renderEnglish() {
+    getEnglishWords().then(data => {
+        let wordArr = data.text;
+
+        for (let i = 0; i < wordArr.length; i++) {
+            console.log();
+        }
+
+    })
+}
+
+
 function init() {
 	renderQuote();
 
 	currentWord = 0;
 	correct = 0;
+	allWordsStr = "";
+	allLettersTyped = "";
 }
 
 renderQuote();
@@ -24,6 +54,8 @@ function renderQuote() {
 	wordInput.disabled = true;
 
 	getQuote().then((data) => {
+        const words = data.content;
+
 		wordList = data.content
 			.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "")
 			.replace(/\s{2,}/g, " ")
@@ -34,26 +66,55 @@ function renderQuote() {
 			return `<span class="word-${i}">${word}</span>`;
 		});
 
+		wordList.forEach((word) => {
+			allWordsStr += word;
+		});
+
 		quoteElement.innerHTML = "";
 		wordElements.forEach((element) => {
 			quoteElement.innerHTML += element;
 			quoteElement.innerHTML += " ";
 		});
 		wordInput.disabled = false;
-		hightlightWord();
+        document.querySelector(`.word-0`).classList.add("text-blue-500");
+        curWord = wordList[currentWord];
 	});
 }
+
+
+function renderText(wordArr) {
+    
+}
+
 
 // renderQuote();
 let currentWord = 0;
 let correct = 0;
+let curWord;
 
 restartBtn.addEventListener("click", init);
 
 wordInput.addEventListener("keypress", (event) => {
-    let curWordEl = document.querySelector(`.word-${currentWord}`);
+	if (event.code !== "Space") {
+		allLettersTyped += event.key;
+    }
     
+    curWord = wordList[currentWord];
+
+	const curWordEl = document.querySelector(`.word-${currentWord}`);
+	let nextWordEl;
+	nextWordEl = document.querySelector(`.word-${currentWord + 1}`);
+
+	if (currentWord !== wordList.length) {
+	}
+
 	if (event.code === "Space") {
+		curWordEl.classList.remove("text-blue-500");
+
+		if (nextWordEl) {
+			nextWordEl.classList.add("text-blue-500");
+		}
+
 		let typedWord = wordInput.value;
 		// Trimmed spaces at the start of the word due to space
 		if (typedWord[0] === " ") {
@@ -72,11 +133,13 @@ wordInput.addEventListener("keypress", (event) => {
 		wordInput.value = "";
 
 		if (currentWord !== wordList.length) {
-            currentWord++;
+			currentWord++;
 		}
 
 		if (currentWord === wordList.length) {
 			wordInput.disabled = true;
+			console.log("test done");
+			console.log(allWordsStr, allLettersTyped);
 		}
 	}
 });
@@ -97,7 +160,8 @@ document.addEventListener("keydown", function (event) {
 	}
 });
 
-// TODO: Highlight current word
+///// TODO: Highlight current word
 // TODO: Calculate WPM
 // TODO: Calculate Accuracy
 // TODO: Highlight wrong words in input
+// TODO: Calculate accuracy using levenshtein distance
