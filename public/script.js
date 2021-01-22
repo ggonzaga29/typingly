@@ -21,7 +21,7 @@ function init() {
 
 renderQuote();
 function renderQuote() {
-    wordInput.disabled = true;
+	wordInput.disabled = true;
 
 	getQuote().then((data) => {
 		wordList = data.content
@@ -40,6 +40,7 @@ function renderQuote() {
 			quoteElement.innerHTML += " ";
 		});
 		wordInput.disabled = false;
+		hightlightWord();
 	});
 }
 
@@ -50,12 +51,11 @@ let correct = 0;
 restartBtn.addEventListener("click", init);
 
 wordInput.addEventListener("keypress", (event) => {
-	console.log(event);
-
+    let curWordEl = document.querySelector(`.word-${currentWord}`);
+    
 	if (event.code === "Space") {
-		let curWordEl = document.querySelector(`.word-${currentWord}`);
-
 		let typedWord = wordInput.value;
+		// Trimmed spaces at the start of the word due to space
 		if (typedWord[0] === " ") {
 			typedWord = typedWord.trimStart();
 		}
@@ -71,8 +71,8 @@ wordInput.addEventListener("keypress", (event) => {
 
 		wordInput.value = "";
 
-		if (currentWord != wordList.length) {
-			currentWord++;
+		if (currentWord !== wordList.length) {
+            currentWord++;
 		}
 
 		if (currentWord === wordList.length) {
@@ -81,10 +81,15 @@ wordInput.addEventListener("keypress", (event) => {
 	}
 });
 
+// Highlight current word
+// function hightlightWord() {
+// 	console.log(`.word-${currentWord}`);
+// 	let el = document.querySelector(`.word-${currentWord}`);
+// 	el.classList.add("text-blue-500");
+// 	currentWord++;
+// }
+
 // Restart test on tab keypress
-document.addEventListener("keypress", (event) => {
-	console.log(event);
-});
 
 document.addEventListener("keydown", function (event) {
 	if (event.ctrlKey && (event.key === "Z" || event.key === "z")) {
