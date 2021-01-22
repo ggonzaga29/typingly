@@ -12,8 +12,17 @@ async function getQuote() {
 	return data;
 }
 
+function init() {
+	renderQuote();
+
+	currentWord = 0;
+	correct = 0;
+}
+
 renderQuote();
 function renderQuote() {
+    wordInput.disabled = true;
+
 	getQuote().then((data) => {
 		wordList = data.content
 			.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "")
@@ -38,13 +47,11 @@ function renderQuote() {
 let currentWord = 0;
 let correct = 0;
 
-restartBtn.addEventListener("click", function () {
-    renderQuote();
+restartBtn.addEventListener("click", init);
 
-    currentWord = 0;
-    correct = 0;
-});
 wordInput.addEventListener("keypress", (event) => {
+	console.log(event);
+
 	if (event.code === "Space") {
 		let curWordEl = document.querySelector(`.word-${currentWord}`);
 
@@ -74,6 +81,18 @@ wordInput.addEventListener("keypress", (event) => {
 	}
 });
 
+// Restart test on tab keypress
+document.addEventListener("keypress", (event) => {
+	console.log(event);
+});
+
+document.addEventListener("keydown", function (event) {
+	if (event.ctrlKey && (event.key === "Z" || event.key === "z")) {
+		init();
+	}
+});
+
 // TODO: Highlight current word
 // TODO: Calculate WPM
 // TODO: Calculate Accuracy
+// TODO: Highlight wrong words in input
