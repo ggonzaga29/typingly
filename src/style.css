@@ -1,5 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.word-input {
+	@apply bg-correct text-primary transition duration-200 px-3 py-3 w-4/6 text-xl;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	outline: none;
+}
+
+.word-input:focus {
+	/* box-shadow: 0 0 5px rgba(81, 203, 238, 1);
+	border: 1px solid rgba(81, 203, 238, 1); */
+}

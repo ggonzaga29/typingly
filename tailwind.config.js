@@ -4,11 +4,14 @@ module.exports = {
   theme: {
     extend: {
         colors: {
-            background: "#586994",
-            primary: "#FFF1E6",
-            secondary: "#7D869C",
-            tertiary: "#F52F57",
-            fourth: "#CEFF1A"
+            background: "#222831",
+            primary: "#dddddd",
+            secondary: "#99D17B",
+            // tertiary: "#F52F57",
+            // fourth: "#CEFF1A",
+            correct: "#30475e",
+            wrong: "#f05454",
+            next: "#0075F2"
         },
         fontFamily: {
             mono: [

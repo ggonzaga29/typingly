@@ -3,9 +3,10 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="stylesheet" href="style.css" />
+        <link rel="stylesheet" href="style.css" />
+        <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
 		<script src="script.js" defer></script>
-		<title>Document</title>
+		<title>Typingly</title>
 	</head>
 	<body class="bg-background h-full">
 		<div
@@ -19,13 +20,10 @@
 					id="quote"
 				></p>
 			</div>
-			<div class="w-2/6 mt-10 flex">
-				<input
-					class="focus:ring-2 focus:ring-blue-600 px-3 py-3 w-4/6 text-xl"
-					id="word-input"
-				/>
+			<div class="w-2/6 mt-14 flex">
+				<input class="word-input .rounded-lg" id="word-input" autocomplete="off" />
 				<button
-					class="text-primary w-1/6 bg-secondary ml-3 flex items-center justify-center"
+					class="text-background font-semibold w-1/6 bg-primary ml-3 flex items-center justify-center"
 					id="restart"
 				>
 					<svg
